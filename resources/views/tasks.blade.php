@@ -43,10 +43,10 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <form action="{{ url('task/all') }}" method="POST">
-                            Current Tasks ({{ count($tasks) }})
+                            Current Tasks
                             {{ csrf_field() }}
-                            <button type="submit" class="btn btn-danger text-right">
-                                <i class="fa fa-btn fa-trash"></i>Delete All
+                            <button type="submit" class="btn btn-danger">
+                                Delete All
                             </button>
                         </form>
                     </div>
@@ -98,7 +98,7 @@
                         Done tasks
                     </div>
                     <div class="panel-body">
-                        <table class="table table-bordered">
+                        <table class="table table-striped">
                             <thead>
                             <th>Task</th>
                             <th>&nbsp;</th>
@@ -129,11 +129,6 @@
                     </div>
                 </div>
             @endif
-        </div>
-    </div>
-    <div class="container">
-        <div class="panel panel-default">
-            <div class="panel-footer text-center">Todolist from: Taylor Otwell</div>
         </div>
     </div>
 @endsection
