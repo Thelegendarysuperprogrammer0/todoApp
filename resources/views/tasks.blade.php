@@ -61,6 +61,7 @@
 
 
                             @foreach ($tasks as $task)
+                                @if(!$task->done)
                                 <tr>
                                     <td class="table-text">
                                         <div>{{ $task->name }}</div>
@@ -76,8 +77,52 @@
                                                 <i class="fa fa-btn fa-trash"></i>Delete
                                             </button>
                                         </form>
+                                        <br>
+                                        <form action="{{ url('task/' . $task->id) }}" method="post">
+                                            <button type="submit" class="btn btn-success">Done !</button>
+                                            {{ method_field('PATCH') }}
+                                            {{ csrf_field() }}
+                                        </form>
                                     </td>
                                 </tr>
+                                @endif
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            @endif
+            @if ($tasks->count())
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Done tasks
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-bordered">
+                            <thead>
+                            <th>Task</th>
+                            <th>&nbsp;</th>
+                            </thead>
+                            <tbody>
+                            @foreach($tasks as $task)
+                                @if($task->done)
+                                    <tr>
+                                        <td>{{$task->name}}</td>
+                                        <td>
+                                            <form action="{{ url('task/' . $task->id) }}" method="post">
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                                {{ method_field('DELETE') }}
+                                                {{ csrf_field() }}
+                                            </form>
+                                            <br>
+                                            <form action="{{ url('task/undo/' . $task->id) }}" method="post">
+                                                <button type="submit" class="btn btn-success">Return back</button>
+                                                {{ method_field('PATCH') }}
+                                                {{ csrf_field() }}
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endif
                             @endforeach
                             </tbody>
                         </table>

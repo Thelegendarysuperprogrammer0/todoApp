@@ -82,3 +82,13 @@ Route::post('/task/all', function (Request $request) {
 
    return redirect('/');
 });
+Route::patch('/task/{task}', function (Task $task) {
+    $task->done = 1;
+    $task->update();
+    return redirect('/');
+});
+Route::patch('/task/undo/{task}', function (Task $task) {
+    $task->done = 0;
+    $task->update();
+    return redirect('/');
+});
